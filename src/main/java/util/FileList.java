@@ -1,4 +1,5 @@
 package main.java.util;
+// done revisioning
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class FileList {
     private static Scanner sc;
 
     private FileList() {
-        sc = null;
+
     }
 
     public static ArrayList<Integer> toListInteger(File f) {
@@ -21,7 +22,7 @@ public class FileList {
                 list.add(sc.nextInt());
             }
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         return list;
     }
@@ -43,7 +44,7 @@ public class FileList {
                 list.add(sc.nextLine());
             }
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         return list;
     }

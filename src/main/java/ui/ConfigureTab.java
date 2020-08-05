@@ -62,7 +62,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         jLabel4.setText("Performance Tasks");
 
         jTextField1.setColumns(5);
-        jTextField1.setText(main.java.lib.Value.getProperty("written_work.quantity")
+        jTextField1.setText(main.java.util.PropertiesLoader.getProperty("written_work.quantity")
         );
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -71,7 +71,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jTextField2.setColumns(5);
-        jTextField2.setText(main.java.lib.Value.getProperty("performance_task.quantity")
+        jTextField2.setText(main.java.util.PropertiesLoader.getProperty("performance_task.quantity")
         );
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -117,7 +117,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         jLabel5.setText("Max");
 
         jTextField3.setColumns(5);
-        jTextField3.setText(main.java.lib.Value.getProperty("written_work.range.max")
+        jTextField3.setText(main.java.util.PropertiesLoader.getProperty("written_work.range.max")
         );
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +137,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         labelQuarterlyAssessment1.setText("Quarterly Assessment");
 
         jTextField4.setColumns(5);
-        jTextField4.setText(main.java.lib.Value.getProperty("performance_task.range.max")
+        jTextField4.setText(main.java.util.PropertiesLoader.getProperty("performance_task.range.max")
         );
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -146,7 +146,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jTextField5.setColumns(5);
-        jTextField5.setText(main.java.lib.Value.getProperty("quarterly_assessment.range.max")
+        jTextField5.setText(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.range.max")
         );
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -158,7 +158,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         jLabel6.setText("Min");
 
         jTextField6.setColumns(5);
-        jTextField6.setText(main.java.lib.Value.getProperty("written_work.range.min")
+        jTextField6.setText(main.java.util.PropertiesLoader.getProperty("written_work.range.min")
         );
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -167,7 +167,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jTextField7.setColumns(5);
-        jTextField7.setText(main.java.lib.Value.getProperty("performance_task.range.min")
+        jTextField7.setText(main.java.util.PropertiesLoader.getProperty("performance_task.range.min")
         );
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -176,7 +176,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jTextField8.setColumns(5);
-        jTextField8.setText(main.java.lib.Value.getProperty("quarterly_assessment.range.min")
+        jTextField8.setText(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.range.min")
         );
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -249,7 +249,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         labelQuarterlyAssessment.setText("Quarterly Assessment");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
-        jComboBox1.setSelectedIndex(Integer.parseInt(main.java.lib.Value.getProperty("written_work.index.percent"))
+        jComboBox1.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("written_work.index.percent"))
         );
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +258,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
-        jComboBox2.setSelectedIndex(Integer.parseInt(main.java.lib.Value.getProperty("performance_task.index.percent")
+        jComboBox2.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("performance_task.index.percent")
         ));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +267,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%" }));
-        jComboBox3.setSelectedIndex(Integer.parseInt(main.java.lib.Value.getProperty("quarterly_assessment.index.percent")
+        jComboBox3.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.index.percent")
         ));
         jComboBox3.setEnabled(false);
 
@@ -336,8 +336,8 @@ public class ConfigureTab extends javax.swing.JPanel {
         int val = jComboBox1.getSelectedIndex();
         jComboBox2.setSelectedIndex((jComboBox2.getItemCount() - 1) - val);
 
-        main.java.lib.Value.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
-        main.java.lib.Value.setProperty("performance_task.index.percent", "" + jComboBox2.getSelectedIndex());
+        main.java.util.PropertiesLoader.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
+        main.java.util.PropertiesLoader.setProperty("performance_task.index.percent", "" + jComboBox2.getSelectedIndex());
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -346,54 +346,54 @@ public class ConfigureTab extends javax.swing.JPanel {
         int val = jComboBox2.getSelectedIndex();
         jComboBox1.setSelectedIndex((jComboBox1.getItemCount() - 1) - val);
 
-        main.java.lib.Value.setProperty("peformance_task.index.percent", "" + jComboBox2.getSelectedIndex());
-        main.java.lib.Value.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
+        main.java.util.PropertiesLoader.setProperty("peformance_task.index.percent", "" + jComboBox2.getSelectedIndex());
+        main.java.util.PropertiesLoader.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
 
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("written_work.range.max", jTextField3.getText());
+        main.java.util.PropertiesLoader.setProperty("written_work.range.max", jTextField3.getText());
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("written_work.quantity", jTextField1.getText());
+        main.java.util.PropertiesLoader.setProperty("written_work.quantity", jTextField1.getText());
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("performance_task.quantity", jTextField2.getText());
+        main.java.util.PropertiesLoader.setProperty("performance_task.quantity", jTextField2.getText());
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("written_work.range.min", jTextField6.getText());
+        main.java.util.PropertiesLoader.setProperty("written_work.range.min", jTextField6.getText());
     }//GEN-LAST:event_jTextField6KeyReleased
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("written_work.range.max", jTextField3.getText());
+        main.java.util.PropertiesLoader.setProperty("written_work.range.max", jTextField3.getText());
     }//GEN-LAST:event_jTextField3KeyReleased
 
     private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("performance_task.range.min", jTextField7.getText());
+        main.java.util.PropertiesLoader.setProperty("performance_task.range.min", jTextField7.getText());
     }//GEN-LAST:event_jTextField7KeyReleased
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("performance_task.range.max", jTextField4.getText());
+        main.java.util.PropertiesLoader.setProperty("performance_task.range.max", jTextField4.getText());
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("quarterly_assessment.range.min", jTextField8.getText());
+        main.java.util.PropertiesLoader.setProperty("quarterly_assessment.range.min", jTextField8.getText());
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
         // TODO add your handling code here:
-        main.java.lib.Value.setProperty("quarterly_assessment.range.max", jTextField5.getText());
+        main.java.util.PropertiesLoader.setProperty("quarterly_assessment.range.max", jTextField5.getText());
     }//GEN-LAST:event_jTextField5KeyReleased
 
 

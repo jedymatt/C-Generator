@@ -72,7 +72,7 @@ public class CGenerator extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getSource() == buttonGenerate) {
 //            show a Generate JDialog
-            main.java.lib.Value.storeUserConfig();
+            main.java.util.PropertiesLoader.storeUserConfig();
             System.out.println("userconfig.properties file created");
         }
     }//GEN-LAST:event_buttonGenerateActionPerformed

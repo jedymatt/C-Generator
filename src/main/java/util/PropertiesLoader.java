@@ -1,4 +1,4 @@
-package main.java.lib;
+package main.java.util;
 //Value setter
 
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Value {
+public class PropertiesLoader {
 
     private static Properties property;
     private static File userConfig;
@@ -28,7 +28,7 @@ public class Value {
             }
         } else {
             try {
-                property.load(Value.class.getResourceAsStream("/res/default.properties"));
+                property.load(PropertiesLoader.class.getResourceAsStream("/res/default.properties"));
             } catch (Exception ex) {
 
             }
