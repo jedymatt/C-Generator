@@ -1,13 +1,8 @@
-package main.lib;
+package main.java.lib;
 
-public class WrittenWorks extends Activity {
+public class PerformanceTasks extends Activity {
 
     private int[] scores;
-
-    public WrittenWorks() {
-        //Initialize scores
-        scores = null;
-    }
 
     public void setScores(int[] scoreArray) {
         if (scoreArray != null) {

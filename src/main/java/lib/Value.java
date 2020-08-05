@@ -1,4 +1,4 @@
-package main.lib;
+package main.java.lib;
 //Value setter
 
 import java.io.File;
@@ -23,7 +23,6 @@ public class Value {
             try {
                 FileInputStream inputStream = new FileInputStream(userConfig);
                 property.load(inputStream);
-                System.out.println("loaded");
             } catch (Exception ex) {
 
             }

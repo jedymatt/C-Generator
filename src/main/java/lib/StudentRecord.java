@@ -1,4 +1,4 @@
-package main.lib;
+package main.java.lib;
 
 public class StudentRecord {
 
