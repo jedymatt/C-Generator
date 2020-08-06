@@ -1,31 +1,70 @@
 package main.java.lib;
 
+import java.util.Random;
+
 public class Activity {
 
-    private int min;
-    private int max;
+    private final Random random;
+    private int[] writtenWorks;
+    private int[] performanceTasks;
+    private int quarterlyAssessment;
 
-    protected Activity() {
+    public Activity() {
+        random = new Random();
     }
 
-    public int getMin() {
-        return min;
+    public void setWrittenWorks(int[] writtenWorks) {
+        this.writtenWorks = writtenWorks;
     }
 
-    public int getMax() {
-        return max;
+    public void setPerformanceTasks(int[] performanceTasks) {
+        this.performanceTasks = performanceTasks;
     }
 
-    public void setMin(int min) {
-        this.min = min;
+    public void setQuarterlyAssessment(int quarterlyAssessment) {
+        this.quarterlyAssessment = quarterlyAssessment;
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public int[] getWrittenWorks() {
+        return writtenWorks;
     }
 
-    protected int randomInt() {
-        return new java.util.Random().nextInt((max - min) + 1) + min;
+    public int[] getPerformanceTasks() {
+        return performanceTasks;
+    }
+
+    public int getQuarterlyAssessment() {
+        return quarterlyAssessment;
+    }
+
+    public void setArrayValues(int[] oldValue, int[] newValue, int min, int max) {
+        // Assumes oldValue is initialized
+        if (newValue != null) {
+            for (int i = 0; i < oldValue.length; i++) {
+                try {
+                    if (newValue[i] == 0) {
+                        oldValue[i] = random.nextInt((max - min) + 1) + min;
+                    } else {
+                        oldValue[i] = newValue[i];
+                    }
+                } catch (IndexOutOfBoundsException ex) {
+                    oldValue[i] = random.nextInt((max - min) + 1) + min;
+                }
+            }
+
+        } else {
+            for (int i = 0; i < oldValue.length; i++) {
+                oldValue[i] = random.nextInt((max - min) + 1) + min;
+            }
+        }
+    }
+
+    public void setQuarterlyAssessment(int newValue, int min, int max) {
+        if (quarterlyAssessment != 0) {
+            quarterlyAssessment = newValue;
+        } else {
+            quarterlyAssessment = random.nextInt((max - min) + 1) + min;
+        }
     }
 
 }
