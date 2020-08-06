@@ -195,7 +195,7 @@ public class FilesTab extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/res/images/textIcon.png"))); // NOI18N
-        jLabel1.setText("ADD LIST IN TEXT FILES (.txt)");
+        jLabel1.setText("ADD THE LIST IN A TEXT FILE (.txt)");
         jPanel3.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -3,7 +3,7 @@ package main.java.util;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public final class PropertyLoader extends java.util.Properties {
+public class PropertyLoader extends java.util.Properties {
 
     public PropertyLoader() {
         try {

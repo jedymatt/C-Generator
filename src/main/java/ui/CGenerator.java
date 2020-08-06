@@ -24,17 +24,17 @@ public class CGenerator extends javax.swing.JFrame {
 
         tab = new javax.swing.JTabbedPane();
         filesTab = new main.java.ui.FilesTab();
-        configureTab = new main.java.ui.ConfigureTab(loader);
         aboutTab = new main.java.ui.AboutTab();
         buttonGenerate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("C Generator");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/main/res/images/icon.png")).getImage());
+        setMinimumSize(new java.awt.Dimension(400, 500));
+        setSize(new java.awt.Dimension(400, 500));
 
         tab.setName(""); // NOI18N
         tab.addTab("Files", filesTab);
-        tab.addTab("Configure", configureTab);
         tab.addTab("About", aboutTab);
 
         buttonGenerate.setText("Generate");
@@ -49,13 +49,12 @@ public class CGenerator extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 313, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonGenerate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(tab))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,7 +78,7 @@ public class CGenerator extends javax.swing.JFrame {
 //            main.java.util.PropertiesLoader.storeUserConfig();
 //            System.out.println("userconfig.properties file created");
             boolean isCreated = loader.storeConfig(loader.getUserConfig());
-            System.out.println("File_Created=" + isCreated);
+            System.out.println("FileCreated=" + isCreated);
             System.out.println("Path=" + loader.getUserConfig().getAbsolutePath());
         }
     }//GEN-LAST:event_buttonGenerateActionPerformed
@@ -125,7 +124,6 @@ public class CGenerator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.java.ui.AboutTab aboutTab;
     private javax.swing.JButton buttonGenerate;
-    private main.java.ui.ConfigureTab configureTab;
     private main.java.ui.FilesTab filesTab;
     private javax.swing.JTabbedPane tab;
     // End of variables declaration//GEN-END:variables
