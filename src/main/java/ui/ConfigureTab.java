@@ -6,8 +6,8 @@ package main.java.ui;
  */
 public class ConfigureTab extends javax.swing.JPanel {
 
-    private final main.java.util.PropertyLoader loader;
-
+    private main.java.util.PropertyLoader loader;
+    
     public ConfigureTab(main.java.util.PropertyLoader loader) {
         this.loader = loader;
         initComponents();
@@ -91,7 +91,7 @@ public class ConfigureTab extends javax.swing.JPanel {
             comboBoxPerformancePercent
         };
 
-        for (javax.swing.JComboBox comboBox : comboBoxes) {
+        for (javax.swing.JComboBox<String> comboBox : comboBoxes) {
             comboBox.addActionListener(new java.awt.event.ActionListener() {
                 @Override
                 public void actionPerformed(java.awt.event.ActionEvent e) {
