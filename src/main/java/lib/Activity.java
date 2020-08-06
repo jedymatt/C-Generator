@@ -37,8 +37,8 @@ public class Activity {
         return quarterlyAssessment;
     }
 
-    public void setArrayValues(int[] oldValue, int[] newValue, int min, int max) {
-        // Assumes oldValue is initialized
+    public void setArrayRandomValues(int[] oldValue, int[] newValue, int min, int max) {
+        // Assumes oldValue array is initialized
         if (newValue != null) {
             for (int i = 0; i < oldValue.length; i++) {
                 try {
@@ -59,7 +59,7 @@ public class Activity {
         }
     }
 
-    public void setQuarterlyAssessment(int newValue, int min, int max) {
+    public void setQuarterlyAssessmentRandomValue(int newValue, int min, int max) {
         if (quarterlyAssessment != 0) {
             quarterlyAssessment = newValue;
         } else {

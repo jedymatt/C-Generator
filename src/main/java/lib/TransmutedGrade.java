@@ -1,6 +1,6 @@
 package main.java.lib;
 
-public enum TransmutationTable {
+public enum TransmutedGrade {
 
     AVERAGE_100(100.0, 100.0),
     AVERAGE_99(98.4, 99.99),
@@ -44,17 +44,16 @@ public enum TransmutationTable {
     AVERAGE_61(4.0, 7.99),
     AVERAGE_60(0.0, 3.99);
 
-    public double MIN_INITIAL;
-    public double MAX_INITIAL;
-    public int AVERAGE;
+    public final double MIN_INITIAL;
+    public final double MAX_INITIAL;
 
-    private TransmutationTable(double MIN_INITIAL, double MAX_INITIAL) {
+    private TransmutedGrade(double MIN_INITIAL, double MAX_INITIAL) {
         this.MIN_INITIAL = MIN_INITIAL;
         this.MAX_INITIAL = MAX_INITIAL;
     }
 
-    static TransmutationTable caseAverage(int AVERAGE) {
-        switch (AVERAGE) {
+    public static TransmutedGrade average(int value) {
+        switch (value) {
             case 100:
                 return AVERAGE_100;
             case 99:

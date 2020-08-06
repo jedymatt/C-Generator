@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main.java.ui;
 
 /**
@@ -11,11 +6,114 @@ package main.java.ui;
  */
 public class ConfigureTab extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Page2
-     */
-    public ConfigureTab() {
+    private final main.java.util.PropertyLoader loader;
+
+    public ConfigureTab(main.java.util.PropertyLoader loader) {
+        this.loader = loader;
         initComponents();
+        setUIValues();
+        addFieldTextAction();
+        addComboBoxAction();
+    }
+
+    private void setUIValues() {
+        if (loader == null) {
+            return;
+        }
+        fieldWrittenSize.setText(loader.getProperty("written.size"));
+        fieldPerformanceSize.setText(loader.getProperty("performance.size"));
+        fieldWrittenMin.setText(loader.getProperty("written.range.min"));
+        fieldWrittenMax.setText(loader.getProperty("written.range.max"));
+        fieldPerformanceMin.setText(loader.getProperty("performance.range.min"));
+        fieldPerformanceMax.setText(loader.getProperty("performance.range.max"));
+        fieldQuarterlyMin.setText(loader.getProperty("quarterly.range.min"));
+        fieldQuarterlyMax.setText(loader.getProperty("quarterly.range.max"));
+        comboBoxWrittenPercent.setSelectedIndex(Integer.parseInt(loader.getProperty("written.percent")));
+        comboBoxPerformancePercent.setSelectedIndex(Integer.parseInt(loader.getProperty("performance.percent")));
+        comboBoxQuarterlyPercent.setSelectedIndex(Integer.parseInt(loader.getProperty("quarterly.percent")));
+    }
+
+    private void addFieldTextAction() {
+        javax.swing.JTextField[] textFields = {
+            fieldWrittenSize,
+            fieldPerformanceSize,
+            fieldWrittenMin,
+            fieldWrittenMax,
+            fieldPerformanceMin,
+            fieldPerformanceMax,
+            fieldQuarterlyMin,
+            fieldQuarterlyMax,};
+
+        for (javax.swing.JTextField textField : textFields) {
+            //disabled copy and paste
+            textField.setTransferHandler(null);
+            //added keyReleased method to setProperties 
+            textField.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyReleased(java.awt.event.KeyEvent k) {
+                    if (k.getSource() == fieldWrittenSize) {
+                        loader.setProperty("written.size", fieldWrittenSize.getText());
+                    } else if (k.getSource() == fieldPerformanceSize) {
+                        loader.setProperty("performance.size", fieldPerformanceSize.getText());
+                    } else if (k.getSource() == fieldWrittenMin) {
+                        loader.setProperty("written.range.min", fieldWrittenMin.getText());
+                    } else if (k.getSource() == fieldWrittenMax) {
+                        loader.setProperty("written.range.max", fieldWrittenMax.getText());
+                    } else if (k.getSource() == fieldPerformanceMin) {
+                        loader.setProperty("peformance.range.min", fieldPerformanceMin.getText());
+                    } else if (k.getSource() == fieldPerformanceMax) {
+                        loader.setProperty("performance.range.max", fieldPerformanceMax.getText());
+                    } else if (k.getSource() == fieldQuarterlyMin) {
+                        loader.setProperty("quarterly.range.min", fieldQuarterlyMin.getText());
+                    } else if (k.getSource() == fieldQuarterlyMax) {
+                        loader.setProperty("quarterly.range.max", fieldQuarterlyMax.getText());
+                    }
+                }
+            });
+            //added keyTyped method for restricting non numerical characters
+            textField.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyTyped(java.awt.event.KeyEvent k) {
+                    char c = k.getKeyChar();
+                    if (!(Character.isDigit(c))
+                            || (c == java.awt.event.KeyEvent.VK_BACK_SPACE
+                            || c == java.awt.event.KeyEvent.VK_DELETE)) {
+                        k.consume();
+                    }
+                }
+            });
+        }
+    }
+
+    private void addComboBoxAction() {
+        javax.swing.JComboBox[] comboBoxes = {
+            comboBoxWrittenPercent,
+            comboBoxPerformancePercent
+        };
+
+        for (javax.swing.JComboBox comboBox : comboBoxes) {
+            comboBox.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    int selectedIndex = comboBox.getSelectedIndex();
+                    if (e.getSource() == comboBoxWrittenPercent) {
+                        int i = (comboBoxPerformancePercent.getItemCount() - 1)
+                                - selectedIndex;
+                        comboBoxPerformancePercent.setSelectedIndex(i);
+                        //set property
+                        loader.setProperty("written.percent", selectedIndex + "");
+                        loader.setProperty("peformance.percent", i + "");
+                    } else if (e.getSource() == comboBoxPerformancePercent) {
+                        int i = (comboBoxWrittenPercent.getItemCount() - 1)
+                                - selectedIndex;
+                        comboBoxWrittenPercent.setSelectedIndex(i);
+                        //set property
+                        loader.setProperty("performance.percent", selectedIndex + "");
+                        loader.setProperty("written.percent", i + "");
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -30,27 +128,27 @@ public class ConfigureTab extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        fieldWrittenSize = new javax.swing.JTextField();
+        fieldPerformanceSize = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fieldWrittenMax = new javax.swing.JTextField();
         labelPerformanceTasks1 = new javax.swing.JLabel();
         labelWrittenWorks1 = new javax.swing.JLabel();
         labelQuarterlyAssessment1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        fieldPerformanceMax = new javax.swing.JTextField();
+        fieldQuarterlyMax = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        fieldWrittenMin = new javax.swing.JTextField();
+        fieldPerformanceMin = new javax.swing.JTextField();
+        fieldQuarterlyMin = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelWrittenWorks = new javax.swing.JLabel();
         labelPerformanceTasks = new javax.swing.JLabel();
         labelQuarterlyAssessment = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBoxWrittenPercent = new javax.swing.JComboBox<>();
+        comboBoxPerformancePercent = new javax.swing.JComboBox<>();
+        comboBoxQuarterlyPercent = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -61,23 +159,9 @@ public class ConfigureTab extends javax.swing.JPanel {
 
         jLabel4.setText("Performance Tasks");
 
-        jTextField1.setColumns(5);
-        jTextField1.setText(main.java.util.PropertiesLoader.getProperty("written_work.quantity")
-        );
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
-            }
-        });
+        fieldWrittenSize.setColumns(5);
 
-        jTextField2.setColumns(5);
-        jTextField2.setText(main.java.util.PropertiesLoader.getProperty("performance_task.quantity")
-        );
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
-        });
+        fieldPerformanceSize.setColumns(5);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,11 +173,11 @@ public class ConfigureTab extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldWrittenSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fieldPerformanceSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,11 +186,11 @@ public class ConfigureTab extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldWrittenSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPerformanceSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,19 +200,7 @@ public class ConfigureTab extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Max");
 
-        jTextField3.setColumns(5);
-        jTextField3.setText(main.java.util.PropertiesLoader.getProperty("written_work.range.max")
-        );
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
-            }
-        });
+        fieldWrittenMax.setColumns(5);
 
         labelPerformanceTasks1.setText("Performance Tasks");
 
@@ -136,53 +208,18 @@ public class ConfigureTab extends javax.swing.JPanel {
 
         labelQuarterlyAssessment1.setText("Quarterly Assessment");
 
-        jTextField4.setColumns(5);
-        jTextField4.setText(main.java.util.PropertiesLoader.getProperty("performance_task.range.max")
-        );
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
-            }
-        });
+        fieldPerformanceMax.setColumns(5);
 
-        jTextField5.setColumns(5);
-        jTextField5.setText(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.range.max")
-        );
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField5KeyReleased(evt);
-            }
-        });
+        fieldQuarterlyMax.setColumns(5);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Min");
 
-        jTextField6.setColumns(5);
-        jTextField6.setText(main.java.util.PropertiesLoader.getProperty("written_work.range.min")
-        );
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField6KeyReleased(evt);
-            }
-        });
+        fieldWrittenMin.setColumns(5);
 
-        jTextField7.setColumns(5);
-        jTextField7.setText(main.java.util.PropertiesLoader.getProperty("performance_task.range.min")
-        );
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField7KeyReleased(evt);
-            }
-        });
+        fieldPerformanceMin.setColumns(5);
 
-        jTextField8.setColumns(5);
-        jTextField8.setText(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.range.min")
-        );
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
-            }
-        });
+        fieldQuarterlyMin.setColumns(5);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -194,24 +231,24 @@ public class ConfigureTab extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(labelQuarterlyAssessment1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldQuarterlyMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(labelPerformanceTasks1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldPerformanceMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(labelWrittenWorks1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldWrittenMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel5)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldWrittenMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPerformanceMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldQuarterlyMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -223,19 +260,19 @@ public class ConfigureTab extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldWrittenMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelWrittenWorks1)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldWrittenMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPerformanceTasks1)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPerformanceMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldPerformanceMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelQuarterlyAssessment1)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldQuarterlyMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldQuarterlyMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -248,28 +285,12 @@ public class ConfigureTab extends javax.swing.JPanel {
 
         labelQuarterlyAssessment.setText("Quarterly Assessment");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
-        jComboBox1.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("written_work.index.percent"))
-        );
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        comboBoxWrittenPercent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
-        jComboBox2.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("performance_task.index.percent")
-        ));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
+        comboBoxPerformancePercent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%", "50%", "60%" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%" }));
-        jComboBox3.setSelectedIndex(Integer.parseInt(main.java.util.PropertiesLoader.getProperty("quarterly_assessment.index.percent")
-        ));
-        jComboBox3.setEnabled(false);
+        comboBoxQuarterlyPercent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20%", "30%", "40%" }));
+        comboBoxQuarterlyPercent.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -283,9 +304,9 @@ public class ConfigureTab extends javax.swing.JPanel {
                     .addComponent(labelQuarterlyAssessment))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxWrittenPercent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxPerformancePercent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxQuarterlyPercent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -294,15 +315,15 @@ public class ConfigureTab extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelWrittenWorks)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxWrittenPercent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPerformanceTasks)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxPerformancePercent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelQuarterlyAssessment)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxQuarterlyPercent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -331,76 +352,19 @@ public class ConfigureTab extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        int val = jComboBox1.getSelectedIndex();
-        jComboBox2.setSelectedIndex((jComboBox2.getItemCount() - 1) - val);
-
-        main.java.util.PropertiesLoader.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
-        main.java.util.PropertiesLoader.setProperty("performance_task.index.percent", "" + jComboBox2.getSelectedIndex());
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        int val = jComboBox2.getSelectedIndex();
-        jComboBox1.setSelectedIndex((jComboBox1.getItemCount() - 1) - val);
-
-        main.java.util.PropertiesLoader.setProperty("peformance_task.index.percent", "" + jComboBox2.getSelectedIndex());
-        main.java.util.PropertiesLoader.setProperty("written_work.index.percent", "" + jComboBox1.getSelectedIndex());
-
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("written_work.range.max", jTextField3.getText());
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("written_work.quantity", jTextField1.getText());
-    }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("performance_task.quantity", jTextField2.getText());
-    }//GEN-LAST:event_jTextField2KeyReleased
-
-    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("written_work.range.min", jTextField6.getText());
-    }//GEN-LAST:event_jTextField6KeyReleased
-
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("written_work.range.max", jTextField3.getText());
-    }//GEN-LAST:event_jTextField3KeyReleased
-
-    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("performance_task.range.min", jTextField7.getText());
-    }//GEN-LAST:event_jTextField7KeyReleased
-
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("performance_task.range.max", jTextField4.getText());
-    }//GEN-LAST:event_jTextField4KeyReleased
-
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("quarterly_assessment.range.min", jTextField8.getText());
-    }//GEN-LAST:event_jTextField8KeyReleased
-
-    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
-        // TODO add your handling code here:
-        main.java.util.PropertiesLoader.setProperty("quarterly_assessment.range.max", jTextField5.getText());
-    }//GEN-LAST:event_jTextField5KeyReleased
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> comboBoxPerformancePercent;
+    private javax.swing.JComboBox<String> comboBoxQuarterlyPercent;
+    private javax.swing.JComboBox<String> comboBoxWrittenPercent;
+    private javax.swing.JTextField fieldPerformanceMax;
+    private javax.swing.JTextField fieldPerformanceMin;
+    private javax.swing.JTextField fieldPerformanceSize;
+    private javax.swing.JTextField fieldQuarterlyMax;
+    private javax.swing.JTextField fieldQuarterlyMin;
+    private javax.swing.JTextField fieldWrittenMax;
+    private javax.swing.JTextField fieldWrittenMin;
+    private javax.swing.JTextField fieldWrittenSize;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -408,14 +372,6 @@ public class ConfigureTab extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel labelPerformanceTasks;
     private javax.swing.JLabel labelPerformanceTasks1;
     private javax.swing.JLabel labelQuarterlyAssessment;

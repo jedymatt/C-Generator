@@ -30,18 +30,17 @@ public class FilesTab extends javax.swing.JPanel {
                     if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
                         if (e.getSource() == buttonAverage) {
                             //set file
-//                System.out.println("average button is selected");
+                            fieldPathAverage.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonWrittenWorks) {
                             //set file
-//                System.out.println("written works button is selected");
+                            fieldPathWritten.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonPerformanceTasks) {
                             //set file
-//                System.out.println("performance tasks button is selected");
+                            fieldPathPerformance.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonQuarterlyAssessment) {
                             //set file
-//                System.out.println("quarterly assessment is selected");
+                            fieldPathQuarterly.setText(fileChooser.getSelectedFile().getPath());
                         }
-                        button.setEnabled(false);
                     }
                 }
             });
@@ -61,6 +60,7 @@ public class FilesTab extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         labelAverage = new javax.swing.JLabel();
         buttonAverage = new javax.swing.JButton();
+        fieldPathAverage = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelWrittenWorks = new javax.swing.JLabel();
         labelPerformanceTasks = new javax.swing.JLabel();
@@ -68,6 +68,9 @@ public class FilesTab extends javax.swing.JPanel {
         buttonPerformanceTasks = new javax.swing.JButton();
         labelQuarterlyAssessment = new javax.swing.JLabel();
         buttonQuarterlyAssessment = new javax.swing.JButton();
+        fieldPathWritten = new javax.swing.JTextField();
+        fieldPathPerformance = new javax.swing.JTextField();
+        fieldPathQuarterly = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -84,25 +87,32 @@ public class FilesTab extends javax.swing.JPanel {
 
         buttonAverage.setText("Browse...");
 
+        fieldPathAverage.setEditable(false);
+        fieldPathAverage.setHighlighter(null);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelAverage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonAverage)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAverage)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonAverage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldPathAverage, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelAverage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAverage)
-                    .addComponent(buttonAverage))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonAverage)
+                    .addComponent(fieldPathAverage)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +130,16 @@ public class FilesTab extends javax.swing.JPanel {
 
         buttonQuarterlyAssessment.setText("Browse...");
 
+        fieldPathWritten.setEditable(false);
+        fieldPathWritten.setHighlighter(null);
+
+        fieldPathPerformance.setEditable(false);
+        fieldPathPerformance.setHighlighter(null);
+
+        fieldPathQuarterly.setEditable(false);
+        fieldPathQuarterly.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        fieldPathQuarterly.setHighlighter(null);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -127,31 +147,44 @@ public class FilesTab extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelQuarterlyAssessment)
                     .addComponent(labelPerformanceTasks)
-                    .addComponent(labelWrittenWorks))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonQuarterlyAssessment, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonWrittenWorks, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonPerformanceTasks, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelWrittenWorks)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(buttonWrittenWorks)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldPathWritten, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(buttonPerformanceTasks)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldPathPerformance))
+                    .addComponent(labelQuarterlyAssessment)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(buttonQuarterlyAssessment)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldPathQuarterly)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelWrittenWorks)
-                    .addComponent(buttonWrittenWorks))
+                .addComponent(labelWrittenWorks)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPerformanceTasks)
-                    .addComponent(buttonPerformanceTasks))
+                    .addComponent(buttonWrittenWorks)
+                    .addComponent(fieldPathWritten))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelPerformanceTasks)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelQuarterlyAssessment)
-                    .addComponent(buttonQuarterlyAssessment))
+                    .addComponent(buttonPerformanceTasks)
+                    .addComponent(fieldPathPerformance))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelQuarterlyAssessment)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonQuarterlyAssessment)
+                    .addComponent(fieldPathQuarterly))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -174,7 +207,7 @@ public class FilesTab extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,7 +217,7 @@ public class FilesTab extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,6 +229,10 @@ public class FilesTab extends javax.swing.JPanel {
     private javax.swing.JButton buttonPerformanceTasks;
     private javax.swing.JButton buttonQuarterlyAssessment;
     private javax.swing.JButton buttonWrittenWorks;
+    private javax.swing.JTextField fieldPathAverage;
+    private javax.swing.JTextField fieldPathPerformance;
+    private javax.swing.JTextField fieldPathQuarterly;
+    private javax.swing.JTextField fieldPathWritten;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
