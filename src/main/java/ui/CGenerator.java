@@ -24,6 +24,7 @@ public class CGenerator extends javax.swing.JFrame {
 
         tab = new javax.swing.JTabbedPane();
         filesTab = new main.java.ui.FilesTab();
+        configureTab1 = new main.java.ui.ConfigureTab(loader);
         aboutTab = new main.java.ui.AboutTab();
         buttonGenerate = new javax.swing.JButton();
 
@@ -35,6 +36,7 @@ public class CGenerator extends javax.swing.JFrame {
 
         tab.setName(""); // NOI18N
         tab.addTab("Files", filesTab);
+        tab.addTab("Configure", configureTab1);
         tab.addTab("About", aboutTab);
 
         buttonGenerate.setText("Generate");
@@ -124,6 +126,7 @@ public class CGenerator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private main.java.ui.AboutTab aboutTab;
     private javax.swing.JButton buttonGenerate;
+    private main.java.ui.ConfigureTab configureTab1;
     private main.java.ui.FilesTab filesTab;
     private javax.swing.JTabbedPane tab;
     // End of variables declaration//GEN-END:variables

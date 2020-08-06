@@ -1,14 +1,24 @@
 package main.java.ui;
 
+import main.java.util.PropertyLoader;
+
 /**
  *
  * @author Jedy Matt
  */
 public class ConfigureTab extends javax.swing.JPanel {
 
-    private main.java.util.PropertyLoader loader;
-    
-    public ConfigureTab(main.java.util.PropertyLoader loader) {
+    private PropertyLoader loader;
+
+    public ConfigureTab() {
+        loader = new PropertyLoader();
+        initComponents();
+        setUIValues();
+        addFieldTextAction();
+        addComboBoxAction();
+    }
+
+    public ConfigureTab(PropertyLoader loader) {
         this.loader = loader;
         initComponents();
         setUIValues();
@@ -17,9 +27,6 @@ public class ConfigureTab extends javax.swing.JPanel {
     }
 
     private void setUIValues() {
-        if (loader == null) {
-            return;
-        }
         fieldWrittenSize.setText(loader.getProperty("written.size"));
         fieldPerformanceSize.setText(loader.getProperty("performance.size"));
         fieldWrittenMin.setText(loader.getProperty("written.range.min"));
