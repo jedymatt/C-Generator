@@ -1,5 +1,8 @@
 package main.java.ui;
 
+import main.java.util.*;
+import main.java.lib.*;
+
 /**
  *
  * @author Jedy Matt
@@ -30,6 +33,7 @@ public class FilesTab extends javax.swing.JPanel {
                     if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
                         if (e.getSource() == buttonAverage) {
                             //set file
+                            FileList.intArray(fileChooser.getSelectedFile());
                             fieldPathAverage.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonWrittenWorks) {
                             //set file

@@ -5,12 +5,17 @@ import java.util.Random;
 public class Activity {
 
     private final Random random;
+    private int averageGrade;
     private int[] writtenWorks;
     private int[] performanceTasks;
     private int quarterlyAssessment;
 
     public Activity() {
         random = new Random();
+    }
+
+    public void setAverageGrade(int averageGrade) {
+        this.averageGrade = averageGrade;
     }
 
     public void setWrittenWorks(int[] writtenWorks) {
@@ -23,6 +28,10 @@ public class Activity {
 
     public void setQuarterlyAssessment(int quarterlyAssessment) {
         this.quarterlyAssessment = quarterlyAssessment;
+    }
+
+    public int getAverageGrade() {
+        return averageGrade;
     }
 
     public int[] getWrittenWorks() {
