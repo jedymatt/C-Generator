@@ -93,12 +93,13 @@ public class ConfigureTab extends javax.swing.JPanel {
     }
 
     private void addComboBoxAction() {
-        javax.swing.JComboBox[] comboBoxes = {
+        javax.swing.JComboBox[] comboBoxes =
+        {
             comboBoxWrittenPercent,
             comboBoxPerformancePercent
         };
 
-        for (javax.swing.JComboBox<String> comboBox : comboBoxes) {
+        for (javax.swing.JComboBox comboBox : comboBoxes) {
             comboBox.addActionListener(new java.awt.event.ActionListener() {
                 @Override
                 public void actionPerformed(java.awt.event.ActionEvent e) {
