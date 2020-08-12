@@ -46,7 +46,6 @@ public class FileList {
 
     private static int lineLength(java.io.File f) {
         int value = 0;
-
         try {
             sc = new Scanner(f);
         } catch (java.io.FileNotFoundException ex) {

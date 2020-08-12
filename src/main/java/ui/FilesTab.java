@@ -1,6 +1,5 @@
 package main.java.ui;
 
-import main.java.util.*;
 import main.java.lib.*;
 
 /**
@@ -8,6 +7,8 @@ import main.java.lib.*;
  * @author Jedy Matt
  */
 public class FilesTab extends javax.swing.JPanel {
+    
+    private ClassRecord classRecord;
 
     /**
      * Creates new form Page1
@@ -16,7 +17,13 @@ public class FilesTab extends javax.swing.JPanel {
         initComponents();
         addAction();
     }
-
+    
+    public FilesTab(ClassRecord classRecord) {
+        this.classRecord = classRecord;
+        initComponents();
+        addAction();
+    }
+    
     private void addAction() {
         javax.swing.JButton[] buttons = {
             buttonAverage,
@@ -24,7 +31,7 @@ public class FilesTab extends javax.swing.JPanel {
             buttonPerformanceTasks,
             buttonQuarterlyAssessment
         };
-
+        
         for (javax.swing.JButton button : buttons) {
             button.addActionListener(new java.awt.event.ActionListener() {
                 @Override
@@ -32,17 +39,16 @@ public class FilesTab extends javax.swing.JPanel {
                     int returnVal = fileChooser.showDialog(FilesTab.this, "Select");
                     if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
                         if (e.getSource() == buttonAverage) {
-                            //set file
-                            FileList.intArray(fileChooser.getSelectedFile());
+                            classRecord.setFileAverage(fileChooser.getSelectedFile());
                             fieldPathAverage.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonWrittenWorks) {
-                            //set file
+                            classRecord.setFileWritten(fileChooser.getSelectedFile());
                             fieldPathWritten.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonPerformanceTasks) {
-                            //set file
+                            classRecord.setFilePerformance(fileChooser.getSelectedFile());
                             fieldPathPerformance.setText(fileChooser.getSelectedFile().getPath());
                         } else if (e.getSource() == buttonQuarterlyAssessment) {
-                            //set file
+                            classRecord.setFileQuarterly(fileChooser.getSelectedFile());
                             fieldPathQuarterly.setText(fileChooser.getSelectedFile().getPath());
                         }
                     }

@@ -1,13 +1,15 @@
 package main.java.ui;
 
 public class CGenerator extends javax.swing.JFrame {
-
+    
     main.java.util.PropertyLoader loader;
+    main.java.lib.ClassRecord classRecord;
 
     /**
      * Creates new form CGenerator
      */
     public CGenerator() {
+        classRecord = new main.java.lib.ClassRecord();
         loader = new main.java.util.PropertyLoader();
         System.out.println(loader.toString());
         initComponents();
@@ -23,7 +25,7 @@ public class CGenerator extends javax.swing.JFrame {
     private void initComponents() {
 
         tab = new javax.swing.JTabbedPane();
-        filesTab = new main.java.ui.FilesTab();
+        filesTab = new main.java.ui.FilesTab(classRecord);
         configureTab1 = new main.java.ui.ConfigureTab(loader);
         aboutTab = new main.java.ui.AboutTab();
         buttonGenerate = new javax.swing.JButton();
@@ -76,12 +78,11 @@ public class CGenerator extends javax.swing.JFrame {
     private void buttonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateActionPerformed
         // TODO add your handling code here:
         if (evt.getSource() == buttonGenerate) {
-//            show a Generate JDialog
-//            main.java.util.PropertiesLoader.storeUserConfig();
-//            System.out.println("userconfig.properties file created");
-            boolean isCreated = loader.storeConfig(loader.getUserConfig());
-            System.out.println("FileCreated=" + isCreated);
+            loader.storeConfig(loader.getUserConfig());
+            System.out.println("File created...");
             System.out.println("Path=" + loader.getUserConfig().getAbsolutePath());
+            classRecord.generate(loader);
+            new GenerateDialog(this, classRecord).setVisible(true);
         }
     }//GEN-LAST:event_buttonGenerateActionPerformed
 
